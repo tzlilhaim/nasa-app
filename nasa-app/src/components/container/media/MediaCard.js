@@ -1,54 +1,61 @@
 import React, { useState, useEffect } from "react"
 import Media from "./Media"
 import EmptyState from "../../utils/EmptyState"
+import LikeDislikeBtn from "./LikeDislikeBtn"
+import Description from "./Description"
 import "../../../styles/mediaCard.css"
 
 export default function MediaCard(props) {
-  const [medias, setMedias] = useState([...props.medias])
-  const [likeDislikeBtn, setLikeDislikeBtn] = useState({})
+  const [likeDislikeBtn, setLikeDislikeBtn] = useState({
+    btnShow: false,
+    btnText: "",
+    btnFunc: null,
+  })
+  const [isDisabled, setDisabled] = useState(false)
+  const [media, setMedia] = useState({
+    ...props.media,
+    isLiked: props.tabName === "favourites",
+    disabled: isDisabled,
+  })
   const [showDescription, setShowDiscription] = useState(false)
 
   useEffect(() => {
-    setMedias([...props.medias])
     let showBtn = false,
-      btnText = "",
-      btnFunc = null,
-      showDescription = false
+      text = "",
+      func = null,
+      showDesc = false
     if (props.tabName === "search" || props.tabName === "favourites") {
       showBtn = true
       if (showBtn) {
-        btnText = props.tabName === "search" ? "+" : "-"
-        btnFunc =
-          props.tabName === "search"
-            ? props.toggleLikeDislike.like
-            : props.toggleLikeDislike.dislike
+        text = media.isLiked ? "-" : "+"
+        func = media.isLiked
+          ? props.toggleLikeDislike.dislike
+          : props.toggleLikeDislike.like
       }
     } else {
-      showDescription = true
+      showDesc = true
     }
-    setLikeDislikeBtn({ showBtn, btnFunc, btnText })
-    setShowDiscription(showDescription)
-  }, [props])
+    setLikeDislikeBtn({ btnShow: showBtn, btnFunc: func, btnText: text })
+    setShowDiscription(showDesc)
+  }, [props, media])
 
   return (
-    <div className="all-media-cards">
-      {medias.length ? (
-        medias.map((media, index) => {
-          return (
-            <div className="media-card" key={`media-card-${index}`}>
-              <Media
-                media={media}
-                likeDislikeBtn={likeDislikeBtn}
-                showDescription={showDescription}
-              />
-            </div>
-          )
-        })
+    <div className="media-card">
+      {props.media.url ? (
+        <Media media={props.media} />
       ) : props.isSearched ? (
         <EmptyState />
       ) : (
-        <div>Enter keywords to search for images</div>
+        <div></div>
       )}
+      {likeDislikeBtn.btnShow ? (
+        <LikeDislikeBtn
+          state={likeDislikeBtn}
+          setDisabled={setDisabled}
+          media={media}
+        />
+      ) : null}
+      {showDescription ? <Description text={props.media.description} /> : null}
     </div>
   )
 }

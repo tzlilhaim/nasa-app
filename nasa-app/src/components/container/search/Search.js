@@ -34,13 +34,20 @@ export default function Search(props) {
       <div id="search-results">
         {isLoading ? (
           <Loader />
+        ) : isSearched ? (
+          medias.map((media, index) => {
+            return (
+              <MediaCard
+                key={`search-result-${index}`}
+                media={media}
+                tabName={tabName}
+                toggleLikeDislike={props.toggleLikeDislike}
+                isSearched={isSearched}
+              />
+            )
+          })
         ) : (
-          <MediaCard
-            medias={medias}
-            tabName={tabName}
-            toggleLikeDislike={props.toggleLikeDislike}
-            isSearched={isSearched}
-          />
+          <div>Enter keywords to search for images</div>
         )}
       </div>
     </div>

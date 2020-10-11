@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   Redirect,
 } from "react-router-dom"
 import "../../styles/container.css"
@@ -74,6 +73,7 @@ export default function Container(props) {
           render={({ match }) => (
             <Favourite
               match={match}
+              favourites={props.favourites}
               serverUrl={props.serverUrl}
               setAsActiveTab={setAsActiveTab}
               toggleLikeDislike={props.toggleLikeDislike}

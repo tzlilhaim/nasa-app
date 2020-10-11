@@ -25,8 +25,8 @@ router.get("/images/:id?", async function (req, res) {
 })
 
 router.post("/image", async function (req, res) {
-  const { title, imgUrl, description } = req.body
-  const images = await imagesManager.post({ title, imgUrl, description })
+  const { title, url, description } = req.body
+  const images = await imagesManager.post({ title, url, description })
   res.send(images)
 })
 

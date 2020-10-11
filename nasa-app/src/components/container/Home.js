@@ -6,7 +6,7 @@ const axios = require("axios")
 
 export default function Home(props) {
   const tabName = "home"
-  const [apod, setAPOD] = useState([])
+  const [apod, setAPOD] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -15,16 +15,15 @@ export default function Home(props) {
       await axios
         .get(`${props.serverUrl}/apod`)
         .then((astronomyPictureOfDay) => {
-          setAPOD([astronomyPictureOfDay.data])
+          setAPOD(astronomyPictureOfDay.data)
         })
       setIsLoading(false)
     }
     getAPOD()
-  }, [])
-
+  }, [props])
   return (
     <div id="home">
-      {isLoading ? <Loader /> : <MediaCard medias={apod} tabName={tabName} />}
+      {isLoading ? <Loader /> : <MediaCard media={apod} tabName={tabName} />}
     </div>
   )
 }

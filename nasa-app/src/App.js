@@ -15,6 +15,7 @@ export default function App() {
 
   const toggleLikeDislike = {
     async like(media) {
+      console.log(media)
       const updateFavourites = await axios.post(`${serverUrl}/image`, media)
       setFavourites(updateFavourites)
       setSnackBarMsg(`Saved image to favourites successfully!`)
