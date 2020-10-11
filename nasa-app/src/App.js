@@ -2,18 +2,33 @@ import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import "./styles/App.css"
 import { Snackbar, IconButton } from "@material-ui/core"
-import Logo from "./components/logo/Logo"
-import Home from "./components/container/Home"
-import Search from "./components/container/search/Search"
-import Favourites from "./components/container/favourites/Favourites"
-import Favourite from "./components/container/favourites/Favourite"
 import NavBar from "./components/navBar/NavBar"
 import Container from "./components/container/Container"
+const axios = require("axios")
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState("home")
+  const SERVER_PORT = 5000
+  const [serverUrl, setServerUrl] = useState(`http://localhost:${SERVER_PORT}`)
   const [snackBarOpen, setSnackBarOpen] = useState(false)
   const [snackBarMsg, setSnackBarMsg] = useState("")
+  const [favourites, setFavourites] = useState([])
+
+  const toggleLikeDislike = {
+    async like(media) {
+      const updateFavourites = await axios.post(`${serverUrl}/image`, media)
+      setFavourites(updateFavourites)
+      setSnackBarMsg(`Saved image to favourites successfully!`)
+      setSnackBarOpen(true)
+    },
+    async dislike(media) {
+      const updateFavourites = await axios.delete(
+        `${serverUrl}/image/${media._id}`
+      )
+      setFavourites(updateFavourites)
+      setSnackBarMsg(`Deleted image from favourites successfully!`)
+      setSnackBarOpen(true)
+    },
+  }
 
   const snackBarClose = (event) => {
     setSnackBarOpen(false)
@@ -22,9 +37,7 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        <Logo />
         <NavBar />
-        <Container />
         <Snackbar
           open={snackBarOpen}
           autoHideDuration={3000}
@@ -43,41 +56,16 @@ export default function App() {
         />
         <Route
           exact
-          path="/"
-          render={() => (
-            <Home
-              setActiveTab={setActiveTab}
-              isActiveTab={activeTab === "home"}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/search"
-          render={() => (
-            <Search
-              setActiveTab={setActiveTab}
-              isActiveTab={activeTab === "search"}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/favourites"
-          render={() => (
-            <Favourites
-              setActiveTab={setActiveTab}
-              isActiveTab={activeTab === "favourites"}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/favourites/:id"
+          path="/:tab?"
           render={({ match }) => (
-            <Favourite match={match} setActiveTab={setActiveTab} />
+            <Container
+              match={match}
+              serverUrl={serverUrl}
+              toggleLikeDislike={toggleLikeDislike}
+              favourites={favourites}
+            />
           )}
-        ></Route>
+        />
       </div>
     </Router>
   )

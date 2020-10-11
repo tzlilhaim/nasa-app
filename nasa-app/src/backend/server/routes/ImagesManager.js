@@ -4,13 +4,13 @@ class ImagesManager {
     this.Image = require("../db/models/Image")
   }
   async get(imageId = null) {
-    let images
     if (imageId) {
-      images = await this.Image.findById(imageId)
+      const image = await this.Image.findById(imageId)
+      return image
     } else {
-      images = await this.Image.find({})
+      const images = await this.Image.find({})
+      return images
     }
-    return images
   }
   async post(details) {
     const image = new this.Image(details)
