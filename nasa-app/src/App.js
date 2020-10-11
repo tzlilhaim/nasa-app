@@ -47,8 +47,12 @@ export default function App() {
 
   useEffect(() => {
     const getFavourites = async () => {
-      const favouriteImages = await axios.get(`${serverUrl}/images/`)
-      setFavourites(favouriteImages.data)
+      let favouriteImages = await axios.get(`${serverUrl}/images/`)
+      favouriteImages = favouriteImages.data.map((f) => {
+        f["isLiked"] = true
+        return f
+      })
+      setFavourites(favouriteImages)
     }
     getFavourites()
   }, [serverUrl])
