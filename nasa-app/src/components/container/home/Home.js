@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import MediaCard from "./media/MediaCard"
-import "../../styles/home.css"
-import Loader from "../utils/Loader"
+import MediaCard from "../media/MediaCard"
+import "../../../styles/home.css"
+import Loader from "../../utils/Loader"
 const axios = require("axios")
 
 export default function Home(props) {
@@ -23,7 +23,15 @@ export default function Home(props) {
   }, [props])
   return (
     <div id="home">
-      {isLoading ? <Loader /> : <MediaCard media={apod} tabName={tabName} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <MediaCard
+          media={apod}
+          tabName={tabName}
+          toggleLikeDislike={props.toggleLikeDislike}
+        />
+      )}
     </div>
   )
 }

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import SearchBar from "./SearchBar"
 import Loader from "../../utils/Loader"
 import MediaCard from "../media/MediaCard"
 import "../../../styles/search.css"
+import EmptyState from "../../utils/EmptyState"
 const axios = require("axios")
 
 export default function Search(props) {
@@ -15,15 +16,18 @@ export default function Search(props) {
   const handleClick = () => {
     const getMediasBySearch = async () => {
       setIsLoading(true)
-      await axios.get(`${props.serverUrl}/search/${search}`).then((medias) => {
-        setMedias([...medias.data])
+      let medias = await axios.get(`${props.serverUrl}/search/${search}`)
+      medias = medias.data.map((m) => {
+        m["isLiked"] = false
+        return m
       })
+      setMedias([...medias])
       setIsLoading(false)
       setIsSearched(true)
     }
     getMediasBySearch()
   }
-
+  
   return (
     <div id="search-page">
       <SearchBar
@@ -35,17 +39,21 @@ export default function Search(props) {
         {isLoading ? (
           <Loader />
         ) : isSearched ? (
-          medias.map((media, index) => {
-            return (
-              <MediaCard
-                key={`search-result-${index}`}
-                media={media}
-                tabName={tabName}
-                toggleLikeDislike={props.toggleLikeDislike}
-                isSearched={isSearched}
-              />
-            )
-          })
+          medias.length ? (
+            medias.map((media, index) => {
+              return (
+                <MediaCard
+                  key={`search-result-${index}`}
+                  media={media}
+                  tabName={tabName}
+                  toggleLikeDislike={props.toggleLikeDislike}
+                  isSearched={isSearched}
+                />
+              )
+            })
+          ) : (
+            <EmptyState tabName={tabName} />
+          )
         ) : (
           <div>Enter keywords to search for images</div>
         )}

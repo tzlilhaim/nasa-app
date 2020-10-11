@@ -4,7 +4,7 @@ class ImagesManager {
     this.Image = require("../db/models/Image")
   }
   async get(imageId = null) {
-    if (imageId) {
+    if (imageId !== null) {
       const image = await this.Image.findById(imageId)
       return image
     } else {

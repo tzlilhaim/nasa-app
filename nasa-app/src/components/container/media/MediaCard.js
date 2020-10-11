@@ -6,53 +6,33 @@ import Description from "./Description"
 import "../../../styles/mediaCard.css"
 
 export default function MediaCard(props) {
-  const [likeDislikeBtn, setLikeDislikeBtn] = useState({
+  const [showBtn, setShowBtn] = useState({
     btnShow: false,
-    btnText: "",
-    btnFunc: null,
   })
-  const [isDisabled, setDisabled] = useState(false)
   const [media, setMedia] = useState({
     ...props.media,
-    isLiked: props.tabName === "favourites",
-    disabled: isDisabled,
   })
   const [showDescription, setShowDiscription] = useState(false)
 
   useEffect(() => {
-    let showBtn = false,
-      text = "",
-      func = null,
-      showDesc = false
     if (props.tabName === "search" || props.tabName === "favourites") {
-      showBtn = true
-      if (showBtn) {
-        text = media.isLiked ? "-" : "+"
-        func = media.isLiked
-          ? props.toggleLikeDislike.dislike
-          : props.toggleLikeDislike.like
-      }
+      setShowBtn(true)
     } else {
-      showDesc = true
+      setShowDiscription(true)
     }
-    setLikeDislikeBtn({ btnShow: showBtn, btnFunc: func, btnText: text })
-    setShowDiscription(showDesc)
   }, [props, media])
-
   return (
     <div className="media-card">
       {props.media.url ? (
         <Media media={props.media} />
-      ) : props.isSearched ? (
-        <EmptyState />
       ) : (
-        <div></div>
+        <EmptyState tabName={""} />
       )}
-      {likeDislikeBtn.btnShow ? (
+      {showBtn ? (
         <LikeDislikeBtn
-          state={likeDislikeBtn}
-          setDisabled={setDisabled}
           media={media}
+          setMedia={setMedia}
+          toggleLikeDislike={props.toggleLikeDislike}
         />
       ) : null}
       {showDescription ? <Description text={props.media.description} /> : null}

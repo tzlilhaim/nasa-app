@@ -19,7 +19,7 @@ router.get("/search/:query?", async function (req, res) {
 })
 
 router.get("/images/:id?", async function (req, res) {
-  const id = req.params || null
+  const { id } = req.params
   const images = await imagesManager.get(id)
   res.send(images)
 })
