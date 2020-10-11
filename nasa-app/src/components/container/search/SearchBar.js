@@ -20,6 +20,7 @@ export default function SearchBar(props) {
         color="secondary"
         startIcon={<SearchIcon />}
         onClick={props.handleClick}
+        disabled={props.isSearchEmpty}
       ></Button>
     </div>
   )

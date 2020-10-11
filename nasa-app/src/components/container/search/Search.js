@@ -27,13 +27,14 @@ export default function Search(props) {
     }
     getMediasBySearch()
   }
-  
+
   return (
     <div id="search-page">
       <SearchBar
         setSearch={setSearch}
         setIsSearched={setIsSearched}
         handleClick={handleClick}
+        isSearchEmpty={!search.length}
       ></SearchBar>
       <div id="search-results">
         {isLoading ? (
