@@ -1,17 +1,22 @@
-import React, { useEffect, useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
 import "../../styles/container.css"
 
 export default function Container(props) {
-  const [activeTab, setActiveTab] = useState(props.match.params.tab)
+  const [tab, setTab] = useState(props.match.params.tab)
+
+  useEffect(() => {
+    setTab(props.match.params.tab)
+  }, [props])
+  props.setActiveTab(tab)
 
   return (
     <div id="container">
-      {activeTab === "home" ? (
+      {tab === "home" ? (
         <Redirect to={"/home"} />
-      ) : activeTab === "search" ? (
+      ) : tab === "search" ? (
         <Redirect to={"/search"} />
-      ) : activeTab === "favourites" ? (
+      ) : tab === "favourites" ? (
         <Redirect to={"/favourites"} />
       ) : (
         <Redirect to={"/home"} />

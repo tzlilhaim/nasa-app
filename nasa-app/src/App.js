@@ -16,7 +16,17 @@ export default function App() {
   const [snackBarOpen, setSnackBarOpen] = useState(false)
   const [snackBarMsg, setSnackBarMsg] = useState("")
   const [favourites, setFavourites] = useState([])
+  const [activeTab, setActiveTab] = useState("home")
+  const [isContainerScrolled, setIsContainerScrolled] = useState(false)
 
+  const handleScroll = () => {
+    if (window.pageYOffset > 0) {
+      setIsContainerScrolled(true)
+    } else {
+      setIsContainerScrolled(false)
+    }
+  }
+  window.addEventListener("scroll", handleScroll, true)
   const toggleLikeDislike = {
     async like(media) {
       let updateFavourites = await axios.post(`${serverUrl}/image`, media)
@@ -60,7 +70,10 @@ export default function App() {
   return (
     <Router>
       <div className="App">
-        <NavBar />
+        <NavBar
+          activeTab={activeTab}
+          isContainerScrolled={isContainerScrolled}
+        />
         <Snackbar
           open={snackBarOpen}
           autoHideDuration={3000}
@@ -80,7 +93,9 @@ export default function App() {
         <Route
           exact
           path="/:tab?"
-          render={({ match }) => <Container match={match} />}
+          render={({ match }) => (
+            <Container match={match} setActiveTab={setActiveTab} />
+          )}
         />
         <Route
           exact
