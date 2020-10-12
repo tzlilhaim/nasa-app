@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { BrowserRouter as Router } from "react-router-dom"
 import "./styles/App.css"
 import { Snackbar, IconButton } from "@material-ui/core"
 import NavBar from "./components/navBar/NavBar"
@@ -12,7 +12,18 @@ export default function App() {
   const [snackBarOpen, setSnackBarOpen] = useState(false)
   const [snackBarMsg, setSnackBarMsg] = useState("")
   const [favourites, setFavourites] = useState([])
-  const [activeTab, setActiveTab] = useState("home")
+  const [isContainerScrolled, setIsContainerScrolled] = useState(false)
+  const [activePath, setActivePath] = useState(
+    `${window.location.pathname.replace("/", "")}`
+  )
+
+  const handleScroll = () => {
+    if (window.pageYOffset > 0) {
+      setIsContainerScrolled(true)
+    } else {
+      setIsContainerScrolled(false)
+    }
+  }
 
   const toggleLikeDislike = {
     async like(media) {
@@ -58,7 +69,8 @@ export default function App() {
     <Router>
       <div className="App">
         <NavBar
-          activeTab={activeTab}
+          activePath={activePath}
+          isContainerScrolled={isContainerScrolled}
         />
         <Snackbar
           open={snackBarOpen}
@@ -76,18 +88,11 @@ export default function App() {
             </IconButton>
           }
         />
-        <Route
-          exact
-          path="/:tab?"
-          render={({ match }) => (
-            <Container
-              match={match}
-              setActiveTab={setActiveTab}
-              serverUrl={serverUrl}
-              toggleLikeDislike={toggleLikeDislike}
-              favourites={favourites}
-            />
-          )}
+        <Container
+          setActivePath={setActivePath}
+          serverUrl={serverUrl}
+          toggleLikeDislike={toggleLikeDislike}
+          favourites={favourites}
         />
       </div>
     </Router>

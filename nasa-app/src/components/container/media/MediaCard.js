@@ -15,19 +15,18 @@ export default function MediaCard(props) {
   const [showDescription, setShowDiscription] = useState(false)
 
   useEffect(() => {
-    if (props.tabName === "search" || props.tabName === "favourites") {
+    const pathName = `${window.location.pathname.replace("/", "")}`
+    if (pathName === "search" || pathName === "favourites") {
       setShowBtn(true)
+      setShowDiscription(false)
     } else {
       setShowDiscription(true)
+      setShowBtn(false)
     }
   }, [props, media])
   return (
     <div className="media-card">
-      {props.media.url ? (
-        <Media media={props.media} />
-      ) : (
-        <EmptyState tabName={""} />
-      )}
+      {props.media.url ? <Media media={props.media} /> : <EmptyState />}
       {showBtn ? (
         <LikeDislikeBtn
           media={media}

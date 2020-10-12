@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import SearchBar from "./SearchBar"
 import Loader from "../../utils/Loader"
 import MediaCard from "../media/MediaCard"
@@ -7,11 +7,15 @@ import EmptyState from "../../utils/EmptyState"
 const axios = require("axios")
 
 export default function Search(props) {
-  const tabName = "search"
   const [search, setSearch] = useState("")
   const [isSearched, setIsSearched] = useState(false)
   const [medias, setMedias] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const pathName = `${window.location.pathname.replace("/", "")}`
+    props.setActivePath(pathName)
+  }, [props])
 
   const handleClick = () => {
     const getMediasBySearch = async () => {
@@ -46,17 +50,16 @@ export default function Search(props) {
                 <MediaCard
                   key={`search-result-${index}`}
                   media={media}
-                  tabName={tabName}
                   toggleLikeDislike={props.toggleLikeDislike}
                   isSearched={isSearched}
                 />
               )
             })
           ) : (
-            <EmptyState tabName={tabName} />
+            <EmptyState />
           )
         ) : (
-          <div>Enter keywords to search for images</div>
+          <div className="placeholder">Enter keywords to search for images</div>
         )}
       </div>
     </div>

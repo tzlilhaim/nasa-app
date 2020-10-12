@@ -26,7 +26,7 @@ export default function Menu(props) {
         <span>{<MenuIcon />}</span>
       </button>
       <NavBarLinks
-        activeTab={props.activeTab}
+        activePath={props.activePath}
         closeMenuOnLinkClick={closeMenuOnLinkClick}
       />
     </div>

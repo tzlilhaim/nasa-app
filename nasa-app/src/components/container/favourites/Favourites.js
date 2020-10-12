@@ -1,10 +1,13 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "../../../styles/favourites.css"
 import MediaCard from "../media/MediaCard"
 import EmptyState from "../../utils/EmptyState"
 
 export default function Favourites(props) {
-  const tabName = "favourites"
+  useEffect(() => {
+    const pathName = `${window.location.pathname.replace("/", "")}`
+    props.setActivePath(pathName)
+  }, [props])
 
   return (
     <div id="favourites">
@@ -16,12 +19,11 @@ export default function Favourites(props) {
               media={f}
               key={`fav-media-${index}`}
               toggleLikeDislike={props.toggleLikeDislike}
-              tabName={tabName}
             />
           )
         })
       ) : (
-        <EmptyState tabName={tabName} />
+        <EmptyState />
       )}
     </div>
   )

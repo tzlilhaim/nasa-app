@@ -22,7 +22,7 @@ export default function NavBar(props) {
   }, [])
   return (
     <div id="nav-bar" className={isScrolled ? "sticky" : null}>
-      <Menu activeTab={props.activeTab} />
+      <Menu activePath={props.activePath} />
       <Logo />
     </div>
   )
