@@ -4,10 +4,6 @@ import "./styles/App.css"
 import { Snackbar, IconButton } from "@material-ui/core"
 import NavBar from "./components/navBar/NavBar"
 import Container from "./components/container/Container"
-import Home from "./components/container/home/Home"
-import Search from "./components/container/search/Search"
-import Favourites from "./components/container/favourites/Favourites"
-import Favourite from "./components/container/favourites/Favourite"
 const axios = require("axios")
 
 export default function App() {
@@ -17,16 +13,7 @@ export default function App() {
   const [snackBarMsg, setSnackBarMsg] = useState("")
   const [favourites, setFavourites] = useState([])
   const [activeTab, setActiveTab] = useState("home")
-  const [isContainerScrolled, setIsContainerScrolled] = useState(false)
 
-  const handleScroll = () => {
-    if (window.pageYOffset > 0) {
-      setIsContainerScrolled(true)
-    } else {
-      setIsContainerScrolled(false)
-    }
-  }
-  window.addEventListener("scroll", handleScroll, true)
   const toggleLikeDislike = {
     async like(media) {
       let updateFavourites = await axios.post(`${serverUrl}/image`, media)
@@ -72,7 +59,6 @@ export default function App() {
       <div className="App">
         <NavBar
           activeTab={activeTab}
-          isContainerScrolled={isContainerScrolled}
         />
         <Snackbar
           open={snackBarOpen}
@@ -94,49 +80,15 @@ export default function App() {
           exact
           path="/:tab?"
           render={({ match }) => (
-            <Container match={match} setActiveTab={setActiveTab} />
-          )}
-        />
-        <Route
-          exact
-          path="/home"
-          render={() => (
-            <Home serverUrl={serverUrl} toggleLikeDislike={toggleLikeDislike} />
-          )}
-        />
-        <Route
-          exact
-          path="/search"
-          render={() => (
-            <Search
-              serverUrl={serverUrl}
-              toggleLikeDislike={toggleLikeDislike}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/favourites"
-          render={() => (
-            <Favourites
-              serverUrl={serverUrl}
-              toggleLikeDislike={toggleLikeDislike}
-              favourites={favourites}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/favourites/:id"
-          render={({ match }) => (
-            <Favourite
+            <Container
               match={match}
-              favourites={favourites}
+              setActiveTab={setActiveTab}
               serverUrl={serverUrl}
               toggleLikeDislike={toggleLikeDislike}
+              favourites={favourites}
             />
           )}
-        ></Route>
+        />
       </div>
     </Router>
   )
