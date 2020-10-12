@@ -1,0 +1,32 @@
+.menu-btn {
+  background-color: black;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50%;
+}
+
+.menu-btn span {
+  display: block;
+  pointer-events: none;
+}
+
+#dropdown-menu {
+  position: relative;
+  display: inline-block;
+  justify-self: flex-start;
+}
+
+#dropdown-menu.opened #nav-bar-links {
+  display: block;
+}
+#dropdown-menu.opened .menu-btn {
+  background-color: white;
+  color: black;
+}
+
+#dropdown-menu.closed #nav-bar-links {
+  display: none;
+}

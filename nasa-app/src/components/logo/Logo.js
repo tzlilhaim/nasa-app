@@ -1,10 +1,11 @@
-import React, { Component } from "react"
+import React from "react"
 import "../../styles/logo.css"
+import nasaLogo from "./nasa-logo.png"
 
-class Logo extends Component {
-  render() {
-    return <h3 id="app-logo">NASA</h3>
-  }
+export default function Logo(props) {
+  return (
+    <div id="app-logo">
+      <img src={nasaLogo} alt="NASA"></img>
+    </div>
+  )
 }
-
-export default Logo

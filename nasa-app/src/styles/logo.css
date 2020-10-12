@@ -1,0 +1,9 @@
+#app-logo img {
+  height: 50px;
+}
+
+#app-logo {
+   text-align: end;
+   align-self: center;
+   margin-right: 10px;
+}

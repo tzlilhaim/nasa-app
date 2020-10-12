@@ -1,0 +1,55 @@
+#nav-bar-links {
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: start;
+  height: fit-content;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 1px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin-top: 10px;
+  background-color: black;
+  color: white;
+}
+
+#nav-bar a {
+  text-decoration: none;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-link {
+  height: 80px;
+  width: 100%;
+}
+
+.active-tab {
+  filter: brightness(150%);
+}
+.inactive-tab {
+  color: gray !important;
+}
+#nav-bar-links > a.inactive-tab:hover {
+  filter: brightness(150%);
+}
+
+#main-links > a {
+  color: white;
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 700px) {
+  #nav-bar a {
+    font-size: medium;
+  }
+}

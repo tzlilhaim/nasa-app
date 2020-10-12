@@ -1,0 +1,19 @@
+#nav-bar {
+  height: auto;
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  background-color: black;
+  min-height: fit-content;
+  margin-bottom: 20px;
+  padding: 10px;
+  align-items: center;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  box-shadow: 5px 5px 5px black;
+  z-index: 1;
+}

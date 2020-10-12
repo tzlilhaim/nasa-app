@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import "../../styles/navBarLinks.css"
 
 export default function NavBarLinks(props) {
   const links = [
@@ -20,17 +21,20 @@ export default function NavBarLinks(props) {
       className={
         props.activeTab === "favourites" ? "active-tab" : "inactive-tab"
       }
+      onClick={props.closeMenuOnLinkClick}
     >
       Favourites
     </Link>,
   ]
-  return [
-    links.map((link, index) => {
-      return (
-        <div className="menu-link" key={`menu-item-${index}`}>
-          {link}
-        </div>
-      )
-    }),
-  ]
+  return (
+    <div id="nav-bar-links">
+      {links.map((link, index) => {
+        return (
+          <div className="menu-link" key={`menu-item-${index}`}>
+            {link}
+          </div>
+        )
+      })}
+    </div>
+  )
 }
