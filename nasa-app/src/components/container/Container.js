@@ -5,7 +5,7 @@ import backgroundVideo from "./assets/background.webm"
 import Home from ".//home/Home"
 import Search from ".//search/Search"
 import Favourites from "./favourites/Favourites"
-import Favourite from "./favourites/Favourite"
+import Favourite from "./favourites/FavouriteDetail"
 
 export default function Container(props) {
   return (
@@ -40,7 +40,6 @@ export default function Container(props) {
         path="/favourites"
         render={() => (
           <Favourites
-            serverUrl={props.serverUrl}
             toggleLikeDislike={props.toggleLikeDislike}
             favourites={props.favourites}
             setActivePath={props.setActivePath}
@@ -49,14 +48,12 @@ export default function Container(props) {
       />
       <Route
         exact
-        path="/favourites/:id"
+        path="/favourite/:id"
         render={({ match }) => (
           <Favourite
             match={match}
-            favourites={props.favourites}
-            serverUrl={props.serverUrl}
             toggleLikeDislike={props.toggleLikeDislike}
-            setActivePath={props.setActivePath}
+            serverUrl={props.serverUrl}
           />
         )}
       ></Route>

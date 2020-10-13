@@ -4,6 +4,7 @@ import EmptyState from "../../utils/EmptyState"
 import LikeDislikeBtn from "./LikeDislikeBtn"
 import Description from "./Description"
 import "../../../styles/mediaCard.css"
+import { Link } from "react-router-dom"
 
 export default function MediaCard(props) {
   const [showBtn, setShowBtn] = useState({
@@ -27,7 +28,20 @@ export default function MediaCard(props) {
   return (
     <div className="media-card">
       <h2>{props.media.title}</h2>
-      {props.media.url ? <Media media={props.media} /> : <EmptyState />}
+      {props.media.url ? (
+        props.media.isLiked ? (
+          <Link
+            to={`/favourite/${props.media._id}`}
+            className="to-favourite-detail"
+          >
+            <Media media={props.media} />
+          </Link>
+        ) : (
+          <Media media={props.media} />
+        )
+      ) : (
+        <EmptyState />
+      )}
       {showBtn ? (
         <LikeDislikeBtn
           media={media}

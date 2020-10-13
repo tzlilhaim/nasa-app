@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import SentimentDissatisfiedIcon from "@material-ui/icons/SentimentDissatisfied"
 import "../../styles/utils.css"
 

@@ -1,5 +1,4 @@
 import React, { useEffect } from "react"
-import "../../../styles/favourites.css"
 import MediaCard from "../media/MediaCard"
 import EmptyState from "../../utils/EmptyState"
 

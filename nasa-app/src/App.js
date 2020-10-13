@@ -4,6 +4,7 @@ import "./styles/App.css"
 import { Snackbar, IconButton } from "@material-ui/core"
 import NavBar from "./components/navBar/NavBar"
 import Container from "./components/container/Container"
+import ScrollToTop from "./components/utils/ScrollToTop"
 const axios = require("axios")
 
 export default function App() {
@@ -16,14 +17,6 @@ export default function App() {
   const [activePath, setActivePath] = useState(
     `${window.location.pathname.replace("/", "")}`
   )
-
-  const handleScroll = () => {
-    if (window.pageYOffset > 0) {
-      setIsContainerScrolled(true)
-    } else {
-      setIsContainerScrolled(false)
-    }
-  }
 
   const toggleLikeDislike = {
     async like(media) {
@@ -67,34 +60,36 @@ export default function App() {
 
   return (
     <Router>
-      <div className="App">
-        <NavBar
-          activePath={activePath}
-          isContainerScrolled={isContainerScrolled}
-        />
-        <Snackbar
-          open={snackBarOpen}
-          autoHideDuration={3000}
-          onClose={snackBarClose}
-          message={<span id="snackbar-msg">{snackBarMsg}</span>}
-          action={
-            <IconButton
-              key="close"
-              arial-label="Close"
-              color="inherit"
-              onClick={snackBarClose}
-            >
-              x
-            </IconButton>
-          }
-        />
-        <Container
-          setActivePath={setActivePath}
-          serverUrl={serverUrl}
-          toggleLikeDislike={toggleLikeDislike}
-          favourites={favourites}
-        />
-      </div>
+      <ScrollToTop>
+        <div className="App">
+          <NavBar
+            activePath={activePath}
+            isContainerScrolled={isContainerScrolled}
+          />
+          <Snackbar
+            open={snackBarOpen}
+            autoHideDuration={3000}
+            onClose={snackBarClose}
+            message={<span id="snackbar-msg">{snackBarMsg}</span>}
+            action={
+              <IconButton
+                key="close"
+                arial-label="Close"
+                color="inherit"
+                onClick={snackBarClose}
+              >
+                x
+              </IconButton>
+            }
+          />
+          <Container
+            setActivePath={setActivePath}
+            serverUrl={serverUrl}
+            toggleLikeDislike={toggleLikeDislike}
+            favourites={favourites}
+          />
+        </div>
+      </ScrollToTop>
     </Router>
   )
 }
