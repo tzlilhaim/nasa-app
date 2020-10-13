@@ -6,7 +6,8 @@
 
 #search-bar {
   display: flex;
-  width: 80%;
+  width: 100%;
+  max-width: 500px;
   min-width: 300px;
   grid-gap: 5%;
   padding: 20px;
