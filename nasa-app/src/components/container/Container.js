@@ -1,7 +1,7 @@
 import React from "react"
 import { Route } from "react-router-dom"
 import "../../styles/container.css"
-import backgroundVideo from "./assets/background.webm"
+import backgroundVideo from "../assets/background.webm"
 import Home from ".//home/Home"
 import Search from ".//search/Search"
 import Favourites from "./favourites/Favourites"
