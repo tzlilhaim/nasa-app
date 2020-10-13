@@ -1,6 +1,3 @@
-#home {
-  background-color: white;
-  width: 80%;
-  padding: 20px;
-  justify-content: center;
+#home .media-card {
+  box-shadow: none;
 }

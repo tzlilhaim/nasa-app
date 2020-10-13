@@ -23,8 +23,9 @@
   display: block;
 }
 #dropdown-menu.opened .menu-btn {
-  background-color: white;
-  color: black;
+  background-color: black;
+  box-shadow: 1px 1px 5px 1px #395584;
+  color: white;
 }
 
 #dropdown-menu.closed #nav-bar-links {

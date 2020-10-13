@@ -1,14 +1,16 @@
 import React from "react"
 
 export default function Media(props) {
+  let isVideo = props.media.url.includes("https://www.youtube.com")
+
   return (
     <div className="media">
-      <h3>{props.media.title}</h3>
-      {props.media.url.includes("https://www.youtube.com/watch?v=") ? (
+      {isVideo ? (
         <iframe
-          className="media-video"
+          width="560"
+          height="315"
+          title="video-of-the-day"
           src={props.media.url}
-          title={props.media.title}
         ></iframe>
       ) : (
         <img

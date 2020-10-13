@@ -26,6 +26,7 @@ export default function MediaCard(props) {
   }, [props, media])
   return (
     <div className="media-card">
+      <h2>{props.media.title}</h2>
       {props.media.url ? <Media media={props.media} /> : <EmptyState />}
       {showBtn ? (
         <LikeDislikeBtn

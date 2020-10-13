@@ -8,9 +8,22 @@
   min-width: 160px;
   box-shadow: 1px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  margin-top: 10px;
+  margin-top: 20px;
   background-color: black;
-  color: white;
+  color: black;
+  box-shadow: 1px 1px 5px 1px #395584;
+}
+
+#dropdown-menu.opened #nav-bar-links:after {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: -8px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 8px solid black;
 }
 
 #nav-bar a {
@@ -34,7 +47,7 @@
   filter: brightness(150%);
 }
 .inactive-tab {
-  color: gray !important;
+  color: rgb(51 69 103) !important;
 }
 #nav-bar-links > a.inactive-tab:hover {
   filter: brightness(150%);

@@ -5,9 +5,9 @@
   grid-auto-flow: column;
   background-color: black;
   min-height: fit-content;
-  margin-bottom: 20px;
   padding: 10px;
   align-items: center;
+  padding: 20px;
 }
 
 .sticky {

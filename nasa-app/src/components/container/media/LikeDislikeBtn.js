@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
-//import "../../styles/likeDislikeBtn.css"
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt"
+import ThumbDownIcon from "@material-ui/icons/ThumbDown"
 
 export default function LikeDislikeBtn(props) {
   const [btn, setBtn] = useState({
-    text: props.media.isLiked ? "-" : "+",
+    icon: props.media.isLiked ? <ThumbDownIcon /> : <ThumbUpAltIcon />,
     func: props.media.isLiked
       ? props.toggleLikeDislike.dislike
       : props.toggleLikeDislike.like,
@@ -15,7 +16,7 @@ export default function LikeDislikeBtn(props) {
 
   useEffect(() => {
     setBtn({
-      text: props.media.isLiked ? "-" : "+",
+      icon: props.media.isLiked ? <ThumbDownIcon /> : <ThumbUpAltIcon />,
       func: props.media.isLiked
         ? props.toggleLikeDislike.dislike
         : props.toggleLikeDislike.like,
@@ -24,7 +25,7 @@ export default function LikeDislikeBtn(props) {
 
   return (
     <button className="like-dislike-btn" onClick={handleClick}>
-      {btn.text}
+      {btn.icon}
     </button>
   )
 }

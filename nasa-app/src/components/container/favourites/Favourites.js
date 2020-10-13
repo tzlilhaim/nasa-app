@@ -11,20 +11,22 @@ export default function Favourites(props) {
 
   return (
     <div id="favourites">
-      <h2>Favourites:</h2>
-      {props.favourites.length ? (
-        props.favourites.map((f, index) => {
-          return (
-            <MediaCard
-              media={f}
-              key={`fav-media-${index}`}
-              toggleLikeDislike={props.toggleLikeDislike}
-            />
-          )
-        })
-      ) : (
-        <EmptyState />
-      )}
+      <h2>Favourites</h2>
+      <div id="all-favourites">
+        {props.favourites.length ? (
+          props.favourites.map((f, index) => {
+            return (
+              <MediaCard
+                media={f}
+                key={`fav-media-${index}`}
+                toggleLikeDislike={props.toggleLikeDislike}
+              />
+            )
+          })
+        ) : (
+          <EmptyState />
+        )}
+      </div>
     </div>
   )
 }

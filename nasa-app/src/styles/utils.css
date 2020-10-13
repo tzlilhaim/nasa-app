@@ -4,9 +4,17 @@
   height: 100%;
   width: 100%;
   justify-content: center;
-  background-color: rgb(230, 228, 228);
-  color: gray;
+  background-color: rgb(10 36 82 / 80%);
+  color: rgb(103 151 232);
   border-radius: 10px;
+  justify-self: center;
+  display: grid;
+  align-content: center;
+  max-width: 400px;
+  max-height: 200px;
+}
+
+.empty-state svg {
   justify-self: center;
 }
 
@@ -16,4 +24,35 @@
   height: 100%;
   width: 100%;
   justify-content: center;
+  justify-self: center;
+}
+
+.MuiCircularProgress-colorPrimary {
+  color: #0d3d91 !important;
+}
+
+.placeholder {
+  margin: 20px;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  max-width: 400px;
+  max-height: 200px;
+  background-color: rgb(10 36 82 / 80%);
+  color: rgb(103 151 232);
+  border-radius: 10px;
+  justify-self: center;
+  display: grid;
+  align-content: center;
+}
+
+.MuiSnackbarContent-root {
+  background-color: rgb(10 36 82) !important;
+  color: rgb(103 151 232) !important;
+}
+
+div.MuiSnackbarContent-action > button,
+div.MuiSnackbarContent-action > button:enabled {
+  background-color: transparent !important;
+  color: rgb(103 151 232) !important;
 }

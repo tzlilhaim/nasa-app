@@ -8,10 +8,18 @@
 }
 .App {
   text-align: center;
+  width: 100%;
+  height: 100%;
 }
 
 button,
 input,
 a {
   outline: none;
+}
+
+button:hover,
+input:hover,
+a:hover {
+  filter: brightness(150%) !important;
 }

@@ -1,0 +1,71 @@
+.media-card {
+  width: 90%;
+  height: 100%;
+  min-width: 320px;
+  min-height: 500px;
+  min-height: 320px;
+  justify-content: center;
+  display: grid;
+  grid-gap: 10px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 2px 2px 5px 2px #94bbff9c;
+  border-radius: 5px;
+  justify-self: center;
+}
+
+.media > img,
+.media > iframe {
+  width: 100%;
+  min-width: 280px;
+  max-width: 500px;
+}
+
+.media-card h2 {
+  width: 90%;
+  justify-self: center;
+  align-self: center;
+}
+
+.media-description {
+  width: 100%;
+  min-width: 280px;
+  max-width: 1200px;
+  justify-self: center;
+  line-height: 25px;
+  font-size: large;
+}
+
+.like-dislike-btn {
+  width: 50px;
+  height: 50px;
+  border: solid 2px white;
+  color: white;
+  background-color: transparent;
+  justify-self: center;
+  border-radius: 5px;
+}
+
+#search-results > .media-card img,
+#search-results > .media-card iframe,
+#all-favourites > .media-card img,
+#all-favourites > .media-card iframe {
+  max-height: 500px;
+}
+
+@media only screen and (max-width: 700px) {
+  .media-card h2 {
+    font-size: medium;
+  }
+  .like-dislike-btn {
+    width: 40px;
+    height: 40px;
+  }
+  .media-card {
+    max-width: 90vw;
+  }
+  .media-card img,
+  .media-card iframe {
+    max-width: 90%;
+  }
+}
