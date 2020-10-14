@@ -1,8 +1,9 @@
 const express = require("express")
 const app = express()
 const bodyParser = require("body-parser")
-const api = require("./server/routes/api")
+const api = require("./src/backend/server/routes/api")
 const config = require("./config")
+const path = require("path")
 const cors = require("cors")
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -21,8 +22,13 @@ app.use(function (req, res, next) {
 
 app.use("/", api)
 app.use(cors())
+app.use(express.static(path.join(__dirname, 'build')));
 
-const port = config.serverPort
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+const port = config.serverPort || 5000
 app.listen(port, () => {
   console.log(`listening on port ${port}`)
 })

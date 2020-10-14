@@ -1,7 +1,7 @@
 const axios = require("axios")
 
 class ApiManager {
-  api = require("../../config")
+  api = require("../../../../config")
   async getAPOD() {
     const media = await axios.get(
       `${this.api.nasaApiUrl_apod}?api_key=${this.api.nasaApiKey}`

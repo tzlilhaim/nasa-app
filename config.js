@@ -1,4 +1,5 @@
-require("dotenv").config({ path: "../../.env" })
+const dotenv = require("dotenv")
+dotenv.config()
 module.exports = {
   serverPort: process.env.SERVER_PORT,
   mongoDbURI: process.env.MONGODB_URI,
