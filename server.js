@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use("/", api)
+app.use("/api", api)
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'build')));
 
