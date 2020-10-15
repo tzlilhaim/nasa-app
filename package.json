@@ -12,16 +12,13 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "dotenv-webpack": "^3.0.0",
     "elevation-pr": "^1.4.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.9",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-redux-firebase": "^3.1.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
-    "redux-firestore": "^0.12.0"
+    "react-scripts": "3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
