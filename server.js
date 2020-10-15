@@ -9,6 +9,9 @@ const cors = require("cors")
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.use(express.static(path.join(__dirname, 'build')));
+app.use("/api", api)
+
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS")
@@ -19,10 +22,7 @@ app.use(function (req, res, next) {
 
   next()
 })
-
-app.use("/api", api)
 app.use(cors())
-app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
