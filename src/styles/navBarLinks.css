@@ -11,7 +11,7 @@
   margin-top: 20px;
   background-color: black;
   color: black;
-  box-shadow: 1px 1px 5px 1px #395584;
+  box-shadow: 1px 1px 5px 1px #5f8fe0;
 }
 
 #dropdown-menu.opened #nav-bar-links:after {
@@ -47,7 +47,7 @@
   filter: brightness(150%);
 }
 .inactive-tab {
-  color: rgb(51 69 103) !important;
+  color: #5f8fe0 !important;
 }
 #nav-bar-links > a.inactive-tab:hover {
   filter: brightness(150%);
