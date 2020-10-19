@@ -8,7 +8,7 @@ import ScrollToTop from "./components/utils/ScrollToTop"
 const axios = require("axios")
 
 export default function App() {
-  const SERVER_PORT = 5000
+  const SERVER_PORT = process.env.PORT || 5000
   const serverUrl = `http://localhost:${SERVER_PORT}/api`
   const [snackBarOpen, setSnackBarOpen] = useState(false)
   const [snackBarMsg, setSnackBarMsg] = useState("")
