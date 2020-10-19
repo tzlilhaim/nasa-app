@@ -57,7 +57,7 @@ export default function Container(props) {
           />
         )}
       ></Route>
-      {props.activePath === "/" ? <Redirect to="/home" /> : null}
+      {props.activePath === "" ? <Redirect to="/home" /> : null}
     </div>
   )
 }
