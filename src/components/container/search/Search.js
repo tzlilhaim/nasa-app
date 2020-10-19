@@ -36,7 +36,6 @@ export default function Search(props) {
     <div id="search-page">
       <SearchBar
         setSearch={setSearch}
-        setIsSearched={setIsSearched}
         handleClick={handleClick}
         isSearchEmpty={!search.length}
       ></SearchBar>

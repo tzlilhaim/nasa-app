@@ -6,7 +6,6 @@ import "../../../styles/search.css"
 export default function SearchBar(props) {
   const onChangeInput = (e) => {
     props.setSearch(e.target.value)
-    props.setIsSearched(false)
   }
   return (
     <div id="search-bar">
