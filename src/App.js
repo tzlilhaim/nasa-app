@@ -8,7 +8,8 @@ import ScrollToTop from "./components/utils/ScrollToTop"
 const axios = require("axios")
 
 export default function App() {
-  const serverUrl = process.env.SERVER_URL
+  const serverUrl =
+    process.env.SERVER_URL || "https://nasaaapp.herokuapp.com/api"
   const [snackBarOpen, setSnackBarOpen] = useState(false)
   const [snackBarMsg, setSnackBarMsg] = useState("")
   const [favourites, setFavourites] = useState([])
