@@ -1,5 +1,5 @@
 import React from "react"
-import { Route } from "react-router-dom"
+import { Route, Redirect } from "react-router-dom"
 import "../../styles/container.css"
 import backgroundVideo from "../assets/background.webm"
 import Home from ".//home/Home"
@@ -57,6 +57,7 @@ export default function Container(props) {
           />
         )}
       ></Route>
+      {props.activePath === "/" ? <Redirect to="/home" /> : null}
     </div>
   )
 }

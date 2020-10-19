@@ -84,6 +84,7 @@ export default function App() {
           />
           <Container
             setActivePath={setActivePath}
+            activePath={activePath}
             serverUrl={serverUrl}
             toggleLikeDislike={toggleLikeDislike}
             favourites={favourites}
