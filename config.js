@@ -1,7 +1,7 @@
 const dotenv = require("dotenv")
 dotenv.config()
 module.exports = {
-  serverPort: process.env.SERVER_PORT,
+  port: process.env.PORT,
   mongoDbURI: process.env.MONGODB_URI,
   nasaApiKey: process.env.NASA_API_KEY,
   nasaApiUrl_apod: process.env.NASA_API_URL_APOD,
