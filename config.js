@@ -6,4 +6,5 @@ module.exports = {
   nasaApiKey: process.env.NASA_API_KEY,
   nasaApiUrl_apod: process.env.NASA_API_URL_APOD,
   nasaApiUrl_library: process.env.NASA_API_URL_LIBRARY,
+  serverUrl: process.env.SERVER_URL,
 }
