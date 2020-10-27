@@ -1,5 +1,5 @@
 # Nasaapp
-This app uses the nasa API to display media files (images and videos) of space, and descriptions about them.
+This app uses the nasa API to display media files (images and videos) of space, and descriptions about them from the nasa archives.
 The user can search for images using a keyword, save images to their favourites page.
 
 # Home
