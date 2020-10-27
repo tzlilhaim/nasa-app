@@ -1,0 +1,5 @@
+#all-favourites {
+  display: grid;
+  justify-content: center;
+  padding: 20px;
+}
