@@ -6,10 +6,10 @@ The user can search for images using a keyword, save images to their favourites 
 https://nasaaapp.herokuapp.com/home
 
 # Technologies
-React
-Express server
-mongoDB database (atlas)
-mongoose
+- React
+- Express server
+- mongoDB database (atlas)
+- mongoose
 
 # Home
 The home page shows a randome daily image from the nasa archives with description of what is seen.
